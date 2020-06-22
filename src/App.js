@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
   Switch,
   Link,
@@ -7,28 +7,41 @@ import {
 } from 'react-router-dom'
 import PageOne from './pages/PageOne'
 import PageTwo from './pages/PageTwo'
+import CountContext from './utils/CountContext'
 
-const App = () => {
-  return (
-    <Router>
-      <div>
-        <nav>
-          <Link to="/">Page One</Link>
-          <Link to="/pagetwo">Page Two</Link>
-        </nav>
-        <Switch>
+class App extends Component {
 
-          <Route exact path="/">
-            <PageOne />
-          </Route>
-          <Route path="/pagetwo">
-            <PageTwo />
-          </Route>
+  state = {
+    count: 0,
+    handleBtnClick: () => {
+      this.setState({ count: this.state.count + 1 })
+    }
+  }
 
-        </Switch>
-      </div>
-    </Router>
-  )
+  render() {
+    return (
+      <CountContext.Provider value={this.state}>
+        <Router>
+          <div>
+            <nav>
+              <Link to="/">Page One</Link>
+              <Link to="/pagetwo">Page Two</Link>
+            </nav>
+            <Switch>
+
+              <Route exact path="/">
+                <PageOne />
+              </Route>
+              <Route path="/pagetwo">
+                <PageTwo />
+              </Route>
+
+            </Switch>
+          </div>
+        </Router>
+      </CountContext.Provider>
+    )
+  }
 }
 
 export default App
