@@ -1,0 +1,16 @@
+.navLinks {
+  color: white;
+}
+
+.navLinks:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.navBrand {
+  color: black;
+}
+.navBrand:hover {
+  text-decoration: none;
+  color: black;
+}

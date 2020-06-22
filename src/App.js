@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './App.css'
 import {
   Switch,
   Link,
@@ -8,13 +9,23 @@ import {
 import PageOne from './pages/PageOne'
 import PageTwo from './pages/PageTwo'
 import CountContext from './utils/CountContext'
+import {
+  Navbar,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  Button
+} from 'reactstrap'
 
 class App extends Component {
 
   state = {
     count: 0,
-    handleBtnClick: () => {
+    handleIncrement: () => {
       this.setState({ count: this.state.count + 1 })
+    },
+    handleDecrement: () => {
+      this.setState({ count: this.state.count - 1 })
     }
   }
 
@@ -23,10 +34,29 @@ class App extends Component {
       <CountContext.Provider value={this.state}>
         <Router>
           <div>
-            <nav>
-              <Link to="/">Page One</Link>
-              <Link to="/pagetwo">Page Two</Link>
-            </nav>
+            <Navbar color="light">
+              <NavbarBrand>
+                <Link to="/" className="navBrand">
+                  My App
+                </Link>
+              </NavbarBrand>
+              <Nav>
+                <NavItem>
+                  <Button color="info">
+                    <Link to="/" className="navLinks">
+                      Page One
+                    </Link>
+                  </Button>
+                </NavItem>
+                <NavItem>
+                  <Button color="info">
+                    <Link to="/pagetwo" className="navLinks">
+                      Page Two
+                    </Link>
+                  </Button>
+                </NavItem>
+              </Nav>
+            </Navbar>
             <Switch>
 
               <Route exact path="/">
